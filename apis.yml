@@ -1,0 +1,149 @@
+aid: onetick
+url: https://raw.githubusercontent.com/api-evangelist/onetick/refs/heads/main/apis.yml
+name: OneTick (OneMarketData)
+kind: company
+description: OneTick, from OneMarketData, is an enterprise tick database and analytics
+  platform for capital markets, capturing, storing, and analyzing trade, quote, and
+  order-book time series at scale for quant research, transaction cost analysis, and
+  trade surveillance. OneTick Cloud sells historical and reference market data covering
+  200+ global equities, options, and futures venues (history back to 1993, corporate
+  actions, symbol cross-reference) delivered on demand through an OAuth2-secured REST
+  WebAPI, a pandas-like Python API (onetick-py), a directed-graph Python API, SQL
+  querying, and file delivery, with a self-serve trial registration. The detailed
+  REST endpoint reference sits behind the cloud dashboard login. OneMarketData merged
+  with KX in September 2025 under TA Associates ownership.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Financial
+- Market Data
+- Tick Data
+- Historical Data
+- Trading
+- Analytics
+- Surveillance
+- Time Series
+- Equities
+- Options
+created: '2026-07-21'
+modified: '2026-07-21'
+specificationVersion: '0.19'
+apis:
+- aid: onetick:onetick-cloud-rest-api
+  name: OneTick Cloud REST API (WebAPI)
+  tags:
+  - REST
+  - Market Data
+  - Tick Data
+  - Historical Data
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.onetick.com/cloud-services/rest-api-end-point-documentation
+  baseURL: https://rest.cloud.onetick.com/omdwebapi/rest/
+  properties:
+  - url: https://www.onetick.com/cloud-services/rest-api-end-point-documentation
+    type: Documentation
+  - url: https://blog.onetick.com/basic-setup-of-webapi-access-to-onetick-cloud
+    type: Documentation
+  description: HTTPS REST access to OneTick Cloud market data and analytics queries,
+    authenticated with an OAuth2 client-credentials Bearer token issued by the OneTick
+    Keycloak realm (https://cloud-auth.parent.onetick.com/realms/OMD/protocol/openid-connect/token).
+    A REST URL builder and per-endpoint reference (parameters and output schemas)
+    are provided behind the cloud dashboard login; the public page describes the API
+    but does not enumerate endpoints.
+- aid: onetick:onetick-py-python-api
+  name: OneTick Python API - onetick-py (pandas-style)
+  tags:
+  - Python
+  - Pandas
+  - Market Data
+  - Analytics
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.pip.distribution.sol.onetick.com/
+  baseURL: https://rest.cloud.onetick.com
+  properties:
+  - url: https://docs.pip.distribution.sol.onetick.com/
+    type: Documentation
+  - url: https://github.com/onemarketdata/onetick-py
+    type: GitHubRepository
+  - url: https://www.onetick.com/cloud-services/onetick-python-queries-using-pandas-style-api
+    type: Documentation
+  description: A pandas-like Python API for querying tick-by-tick market data in OneTick,
+    published on PyPI as onetick-py with openly browsable documentation. Against OneTick
+    Cloud it executes over the WebAPI transport (OTP_HTTP_ADDRESS=https://rest.cloud.onetick.com)
+    using the same OAuth2 client credentials, returning results as pandas DataFrames.
+- aid: onetick:onetick-python-directed-graph-api
+  name: OneTick Python API - Directed Graph
+  tags:
+  - Python
+  - Query
+  - Market Data
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://pythonquery.docs.sol.onetick.com/intro.html
+  properties:
+  - url: https://pythonquery.docs.sol.onetick.com/intro.html
+    type: Documentation
+  - url: https://www.onetick.com/cloud-services/onetick-python-queries-using-directed-graph-style-api
+    type: Documentation
+  description: The lower-level directed-graph-style Python query API for OneTick,
+    composing event-processor graphs against tick series, with openly browsable documentation
+    and worked examples on the OneTick Cloud site.
+- aid: onetick:onetick-sql-api
+  name: OneTick SQL API
+  tags:
+  - SQL
+  - Query
+  - Market Data
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://sql.docs.sol.onetick.com/intro.html
+  properties:
+  - url: https://sql.docs.sol.onetick.com/intro.html
+    type: Documentation
+  - url: https://github.com/onemarketdata/onetick-sql-docs
+    type: GitHubRepository
+  - url: https://www.onetick.com/cloud-services/sql-querying-examples
+    type: Documentation
+  description: SQL querying over OneTick tick and reference data, documented openly
+    and runnable against OneTick Cloud (including via otp.SqlQuery in onetick-py over
+    the WebAPI transport).
+- aid: onetick:onetick-point-in-time-tca-api
+  name: OneTick Point-in-Time TCA API
+  tags:
+  - TCA
+  - Transaction Cost Analysis
+  - Historical Data
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.onetick.com/pit-tca-api
+  properties:
+  - url: https://www.onetick.com/pit-tca-api
+    type: Documentation
+  - url: https://www.onetick.com/pit-tca-methodology
+    type: Documentation
+  description: Cloud API for extracting adjusted and unadjusted point-in-time quotes
+    and trades at nanosecond precision across 200+ venues for transaction cost analysis,
+    packaged for Python integration; marketed sales-led (request a demo) with no public
+    endpoint reference.
+common:
+- type: Website
+  url: https://www.onetick.com/
+- type: Portal
+  url: https://authdash.cloud.onetick.com/web_dashboard/?dash=sub_profile
+- type: Documentation
+  url: https://docs.pip.distribution.sol.onetick.com/
+- type: GitHubOrganization
+  url: https://github.com/onemarketdata
+- type: LinkedIn
+  url: https://www.linkedin.com/company/onemarketdata
+- type: Blog
+  url: https://blog.onetick.com/
+- type: SignUp
+  url: https://cloud-auth.parent.onetick.com/realms/OMD/protocol/openid-connect/registrations?client_id=acf_onetick_cloud&scope=openid%20profile&redirect_uri=https://authdash.cloud.onetick.com/web_dashboard/j_security_check&response_type=code
+- type: TermsOfService
+  url: https://www.onetick.com/terms-of-use
+- type: PrivacyPolicy
+  url: https://www.onetick.com/privacy-policy
+- type: Contact
+  url: https://www.onetick.com/contact
+- type: StatusPage
+  url: https://www.onetick.com/cloud-services/system-availability
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

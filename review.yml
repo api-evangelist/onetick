@@ -1,0 +1,141 @@
+aid: onetick
+name: OneTick (OneMarketData)
+review:
+  question: Does OneTick (OneMarketData) expose a public, documented API surface for
+    its market data, and is it self-serve or sales-gated?
+  answer: true
+  date: '2026-07-21'
+  reviewer: API Evangelist
+  openapiHarvested: false
+  openapiScopeNote: |
+    No public OpenAPI/Swagger/AsyncAPI artifact was found. Probes of
+    https://rest.cloud.onetick.com/omdwebapi/rest/swagger.json,
+    /openapi.json, and /api-docs all 302-redirect to the Keycloak login
+    (realm OMD) — the spec, if one exists, sits behind authentication.
+    A GitHub code search across the onemarketdata org returned zero
+    openapi/swagger hits. Nothing was harvested and no openapi/ directory
+    was created, per the no-fabrication rule.
+findings:
+  summary: |
+    OneTick has a genuinely public, hybrid API posture — unusual for an
+    institutional tick-data vendor. OneTick Cloud is programmatically
+    accessible three ways: an HTTPS REST WebAPI at
+    https://rest.cloud.onetick.com/omdwebapi/rest/ secured by OAuth2
+    client-credentials Bearer tokens from a Keycloak realm
+    (https://cloud-auth.parent.onetick.com/realms/OMD/protocol/openid-connect/token,
+    405 on GET as expected for a POST-only token endpoint); a pandas-like
+    Python API (onetick-py, on PyPI, source on GitHub) that tunnels over
+    the same WebAPI host; and SQL querying. The Python and SQL docs are
+    fully public (HTTP 200) on dedicated docs subdomains, and there is a
+    self-serve trial registration flow via Keycloak. However, the REST
+    per-endpoint reference (parameters, output schemas, URL builder) is
+    only available after dashboard login, and no OpenAPI/Swagger spec is
+    publicly downloadable — swagger.json probes redirect to the OAuth
+    login. Pricing is not public ("flexible subscription packages",
+    request-a-demo), so commercial onboarding remains sales-assisted even
+    though technical onboarding is self-serve. The enterprise OneTick
+    tick-analytics platform and RegTech/surveillance products are entirely
+    sales-led. The cloud dashboard also exposes an S3 tab, consistent with
+    the marketing claim of delivery via "cloud, python, API or files";
+    no WebSocket, FIX, or multicast delivery is publicly documented for
+    the cloud product. Ownership: OneMarketData merged with KX
+    (announced 2025-09-15), following KX's acquisition by TA Associates;
+    OneTick founder Leonid Frants became a strategic advisor.
+  posture: hybrid - self-serve trial and public Python/SQL docs, but REST endpoint
+    reference and pricing gated; enterprise platform sales-led
+  authentication: OAuth2 client-credentials (Keycloak realm OMD) issuing Bearer tokens;
+    entitlement-based data subscriptions managed through the cloud dashboard
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://rest.cloud.onetick.com/omdwebapi/rest/
+      documented: true
+      note: Public marketing page documents existence; endpoint reference behind login.
+        Host verified live (302 to Keycloak auth when unauthenticated).
+    - protocol: Python WebAPI (onetick-py)
+      scheme: https
+      baseURL: https://rest.cloud.onetick.com
+      documented: true
+      note: Publicly documented at docs.pip.distribution.sol.onetick.com (HTTP 200)
+        and in the vendor blog WebAPI setup walkthrough; executes over HTTPS.
+    - protocol: SQL
+      documented: true
+      note: Public docs at sql.docs.sol.onetick.com (HTTP 200); runs through OneTick
+        query infrastructure, including otp.SqlQuery over WebAPI.
+    - protocol: FlatFiles
+      documented: partial
+      note: Market-data page markets delivery via "cloud, python, API or files" and
+        the cloud dashboard has an S3 section (?dash=s3); no public file-delivery
+        spec found.
+    - protocol: WebSocket
+      documented: false
+      note: No public WebSocket/streaming API documentation found for OneTick Cloud.
+    - protocol: FIX/Multicast
+      documented: false
+      note: No public FIX or multicast feed documentation; the enterprise platform's
+        feed-handler collection layer is sales-gated.
+  probes:
+    - url: https://www.onetick.com/
+      status: 200
+    - url: https://www.onetick.com/cloud-services
+      status: 200
+    - url: https://www.onetick.com/cloud-services/rest-api-end-point-documentation
+      status: 200
+    - url: https://rest.cloud.onetick.com/omdwebapi/rest/
+      status: 302 (to Keycloak OAuth login; API host live, auth-gated)
+    - url: https://cloud-auth.parent.onetick.com/realms/OMD/protocol/openid-connect/token
+      status: 405 (GET on POST-only token endpoint; live)
+    - url: https://rest.cloud.onetick.com/omdwebapi/rest/swagger.json
+      status: 302 (redirects to login; no public spec)
+    - url: https://docs.pip.distribution.sol.onetick.com/
+      status: 200
+    - url: https://sql.docs.sol.onetick.com/intro.html
+      status: 200
+    - url: https://pythonquery.docs.sol.onetick.com/intro.html
+      status: 200
+    - url: https://authdash.cloud.onetick.com/web_dashboard/?dash=sub_profile
+      status: 200
+    - url: https://github.com/onemarketdata
+      status: 200 (8 public repos incl. onetick-py, onetick-sql-docs)
+    - url: https://www.onetick.com/pit-tca-api
+      status: 200
+    - url: https://www.onetick.com/terms-of-use
+      status: 200
+    - url: https://www.onetick.com/privacy-policy
+      status: 200
+    - url: https://www.onetick.com/cloud-services/system-availability
+      status: 200
+sources:
+  - url: https://www.onetick.com/cloud-services
+    type: Documentation
+    note: Lists the three API access methods (REST, Python x2, SQL), docs links,
+      cloud login, and the Keycloak trial-registration link.
+  - url: https://www.onetick.com/cloud-services/rest-api-end-point-documentation
+    type: Documentation
+    note: Confirms per-endpoint REST reference and URL builder exist behind login.
+  - url: https://blog.onetick.com/basic-setup-of-webapi-access-to-onetick-cloud
+    type: Documentation
+    note: Documents OAuth2 client-credentials token endpoint and
+      OTP_HTTP_ADDRESS=https://rest.cloud.onetick.com WebAPI transport.
+  - url: https://docs.pip.distribution.sol.onetick.com/
+    type: Documentation
+    note: Public onetick-py (pandas-style) API documentation.
+  - url: https://www.onetick.com/market-data
+    type: Documentation
+    note: 200+ exchanges, history to 1993, T+1 normalized data, delivery via
+      "cloud, python, API or files"; pricing not public.
+  - url: https://www.businesswire.com/news/home/20250915723209/en/KX-and-OneTick-Merge-to-Unite-Capital-Markets-Data-Analytics-AI-and-Surveillance-on-One-Platform
+    type: PressRelease
+    note: KX and OneMarketData (OneTick) merger announcement, 2025-09-15, under
+      TA Associates ownership.
+actions:
+  openapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    Five real documented API products were cataloged (REST WebAPI, two
+    Python APIs, SQL, Point-in-Time TCA). No OpenAPI artifact could be
+    harvested because none is public; the openapi/ directory was omitted
+    rather than fabricating a spec. Base URLs were recorded only where
+    documented (REST WebAPI host); the auth-gated endpoint reference is
+    the main enrichment target if credentials are ever provisioned via
+    the self-serve trial.
