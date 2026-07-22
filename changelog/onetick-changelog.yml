@@ -1,0 +1,53 @@
+generated: '2026-07-22'
+method: searched
+source: https://docs.pip.distribution.sol.onetick.com/static/changelog.html
+scheme: keep-a-changelog style (Added/Changed/Fixed/Removed) with three-part
+  versions (1.NNN.0), roughly weekly releases
+current_version: 1.204.0
+scope: onetick-py (the official Python client for OneTick / OneTick Cloud); the
+  OneTick server itself uses dated release trains (e.g. rel_20260420_update2)
+entries:
+- version: 1.201.0
+  date: '2026-06-29'
+  breaking: false
+  highlights:
+  - Removed use of SOME_DB, TRAIN_A_PRL_TRD and US_COMP databases
+  - Allow using cloud server in doctests
+  - Use authentication parameters when calling compatibility checks
+  - Do not rewrite SYMBOL_NAME column in otp.LoadTicksFromDataFrame
+- version: 1.200.0
+  date: '2026-06-22'
+  breaking: false
+  highlights:
+  - Add pyarrow output mode to otp.run WebAPI mode
+  - Rework otp.compatibility module; drop compatibility checks for unsupported old
+    OneTick versions
+  - Don't show entitlement warnings when getting database schema
+- version: 1.199.0
+  date: '2026-06-15'
+  breaking: false
+  highlights:
+  - Support returning long values in return statements in per-tick script
+  - Add query_properties parameter to database inspection functions
+  - Add cache for access token in WebAPI mode
+- version: 1.198.0
+  date: '2026-06-08'
+  breaking: false
+  highlights:
+  - Add llms.txt file to the documentation
+  - Set readable_only to False by default in otp.databases
+- version: 1.197.0
+  date: '2026-06-02'
+  breaking: true
+  highlights:
+  - Add support of FSQ for CEP queries
+  - Added otp.ReadFromKdb
+  - Add otp.QueryParameters and query_parameters parameter for all otp.Source classes
+  - Removed parameter raw from otp.Source.to_otq function
+- version: 1.196.0
+  date: '2026-05-11'
+  breaking: false
+  highlights:
+  - Added otp.Source.value_present and otp.Source.print_otq()
+  - Add parameter preserve_decimal_flag to otp.run
+  - Fix setting wrong http_address in WebAPI mode

@@ -1,0 +1,65 @@
+generated: '2026-07-22'
+method: searched
+source: https://cloud-auth.parent.onetick.com/realms/OMD/.well-known/openid-configuration
+docs: https://blog.onetick.com/basic-setup-of-webapi-access-to-onetick-cloud
+summary:
+  types:
+  - oauth2
+  - openIdConnect
+  oauth2_flows:
+  - clientCredentials
+  - authorizationCode
+  token_style: Bearer
+schemes:
+- name: OneTickCloudOAuth2
+  type: oauth2
+  description: OneTick Cloud WebAPI requests are authenticated with an OAuth2 Bearer
+    access token issued by the OneTick Keycloak OMD realm. Machine access uses the
+    client-credentials grant; the cloud dashboard and self-serve registration use
+    the authorization-code flow (client_id acf_onetick_cloud). Unauthenticated requests
+    to https://rest.cloud.onetick.com/omdwebapi/* receive a 302 redirect into the
+    Keycloak authorization endpoint.
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://cloud-auth.parent.onetick.com/realms/OMD/protocol/openid-connect/token
+  - flow: authorizationCode
+    authorizationUrl: https://cloud-auth.parent.onetick.com/realms/OMD/protocol/openid-connect/auth
+    tokenUrl: https://cloud-auth.parent.onetick.com/realms/OMD/protocol/openid-connect/token
+  sources:
+  - well-known/onetick-openid-configuration.json
+- name: OneTickOpenIDConnect
+  type: openIdConnect
+  openIdConnectUrl: https://cloud-auth.parent.onetick.com/realms/OMD/.well-known/openid-configuration
+  description: Full OIDC discovery is published for the OMD realm (issuer
+    https://cloud-auth.parent.onetick.com/realms/OMD), including jwks_uri,
+    introspection, revocation, device-authorization, and pushed-authorization-request
+    endpoints.
+  sources:
+  - well-known/onetick-openid-configuration.json
+details:
+  issuer: https://cloud-auth.parent.onetick.com/realms/OMD
+  token_endpoint: https://cloud-auth.parent.onetick.com/realms/OMD/protocol/openid-connect/token
+  jwks_uri: https://cloud-auth.parent.onetick.com/realms/OMD/protocol/openid-connect/certs
+  token_endpoint_auth_methods:
+  - private_key_jwt
+  - client_secret_basic
+  - client_secret_post
+  - tls_client_auth
+  - client_secret_jwt
+  grant_types_supported:
+  - authorization_code
+  - client_credentials
+  - implicit
+  - password
+  - refresh_token
+  - urn:ietf:params:oauth:grant-type:device_code
+  - urn:ietf:params:oauth:grant-type:token-exchange
+  - urn:ietf:params:oauth:grant-type:uma-ticket
+  - urn:openid:params:grant-type:ciba
+  pkce_code_challenge_methods:
+  - plain
+  - S256
+  tls_client_certificate_bound_access_tokens: true
+  python_client: onetick-py in WebAPI mode reuses the same OAuth2 client credentials
+    (OTP_HTTP_ADDRESS=https://rest.cloud.onetick.com) and caches the access token
+    between queries (added in onetick-py 1.199.0).

@@ -1,0 +1,53 @@
+generated: '2026-07-22'
+method: searched
+source: https://pypi.org/project/onetick-py/
+packages:
+- language: python
+  registry: pypi
+  name: onetick-py
+  url: https://pypi.org/project/onetick-py/
+  install: pip install onetick-py[webapi]
+  version: 1.204.0
+  official: true
+  notes: High-level pandas-style Python API for OneTick; the [webapi] extra adds REST
+    connectivity to OneTick Cloud (HTTP/HTTPS with Arrow transport) with no OneTick
+    binaries required client-side.
+  source_code: https://github.com/onemarketdata/onetick-py
+  documentation: https://docs.pip.distribution.sol.onetick.com/
+repositories:
+- name: onetick-py
+  url: https://github.com/onemarketdata/onetick-py
+  description: High-level Python API for OneTick database
+  official: true
+- name: onetick-py-examples
+  url: https://github.com/onemarketdata/onetick-py-examples
+  description: onetick-py mentored examples
+  official: true
+- name: onetick-py-docs
+  url: https://github.com/onemarketdata/onetick-py-docs
+  description: onetick-py prebuilt documentation
+  official: true
+- name: onetick-sql-docs
+  url: https://github.com/onemarketdata/onetick-sql-docs
+  description: OneTick SQL documentation
+  official: true
+- name: onetick-cloud-coverage
+  url: https://github.com/onemarketdata/onetick-cloud-coverage
+  description: OneTick Cloud Coverage Documentation
+  official: true
+- name: otp-examples
+  url: https://github.com/onemarketdata/otp-examples
+  description: Jupyter Notebook examples for onetick-py
+  official: true
+- name: ml
+  url: https://github.com/onemarketdata/ml
+  description: Machine learning model examples built on OneTick's Data Science framework
+  official: true
+- name: biz
+  url: https://github.com/onemarketdata/biz
+  description: Financial business-case implementations using OneTick queries and the
+    OneTick Python API
+  official: true
+notes: No first-party packages found on npm, Maven Central, NuGet, RubyGems, Packagist,
+  or crates.io; the Python ecosystem (onetick-py) is the official client surface.
+  OneTick also runs private pip servers for offline installation per the docs.

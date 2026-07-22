@@ -1,0 +1,22 @@
+generated: '2026-07-22'
+method: searched
+source: https://www.onetick.com/cloud-services/system-availability
+status_page: https://www.onetick.com/cloud-services/system-availability
+versioning:
+  onetick-py:
+    scheme: three-part incrementing (1.NNN.0), roughly weekly releases
+    current: 1.204.0
+    docs: https://docs.pip.distribution.sol.onetick.com/static/changelog.html
+  onetick_server:
+    scheme: dated release trains (e.g. rel_20260420_update2), referenced by the
+      onetick-py compatibility documentation
+    docs: https://docs.pip.distribution.sol.onetick.com/static/compatibility.html
+deprecation:
+  policy_url: null
+  sunset_header: null
+  notes: No public deprecation policy or RFC 8594 Sunset-header commitment found;
+    onetick-py deprecations are announced per-release in the changelog.
+sla:
+  url: null
+  notes: No public SLA; OneTick Cloud system availability is reported on the status
+    page above. Enterprise terms are contract-based (sales-led).

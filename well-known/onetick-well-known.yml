@@ -1,0 +1,45 @@
+generated: '2026-07-22'
+method: searched
+source: live probes of onetick.com, rest.cloud.onetick.com, cloud-auth.parent.onetick.com, docs.pip.distribution.sol.onetick.com
+hosts:
+- host: https://cloud-auth.parent.onetick.com
+  documents:
+  - path: /realms/OMD/.well-known/openid-configuration
+    status: 200
+    file: onetick-openid-configuration.json
+    note: Keycloak OIDC discovery for the OMD realm that issues OneTick Cloud WebAPI tokens
+- host: https://www.onetick.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /llms.txt
+    status: 200
+    file: ../llms/onetick-llms.txt
+  - path: /llms-full.txt
+    status: 200
+    note: exists on the provider site; not mirrored into this repo by policy
+- host: https://rest.cloud.onetick.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://docs.pip.distribution.sol.onetick.com
+  documents:
+  - path: /llms.txt
+    status: 200
+    file: ../llms/onetick-py-llms.txt

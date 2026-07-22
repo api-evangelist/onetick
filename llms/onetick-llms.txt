@@ -1,0 +1,85 @@
+# OneTick (onetick.com)
+
+> OneTick, now part of KX (kx.com), is an enterprise-grade time-series data management, real-time streaming analytics, and financial market data platform built for the capital markets industry. OneTick merged with KX in September 2025 to form a unified capital markets data, analytics, AI, and surveillance platform.
+
+## Company Overview
+
+- Company: KX (merged entity of KX and OneMarketData, LLC)
+- Product: OneTick (now part of the KX platform)
+- Website: https://www.onetick.com | https://kx.com
+- Founded: Wall Street experts; acquired Tick Data, LLC in 2015; merged with KX in September 2025
+- CEO: Ashok Reddy (CEO of the combined KX + OneTick company)
+- Backer: TA Associates (private equity)
+- Customers: 160+ clients including hedge funds, investment banks, asset managers, brokerages, exchanges, and regulators (e.g., UK Financial Conduct Authority)
+
+## Merger with KX (September 2025)
+
+On September 15, 2025, KX merged with OneMarketData, LLC (owner of OneTick). The combined company operates under the KX brand and is led by Ashok Reddy as CEO. OneTick founder Leonid Frants serves as Strategic Advisor.
+
+What KX brings: High-performance real-time, time-series, and AI-driven analytics (kdb+/q technology).
+What OneTick brings: Market data management, front-office analytics, regulatory solutions, and deep historical tick data from 200+ exchanges.
+
+## Core Products
+
+### OneTick Platform (On-Premises / Enterprise)
+A unified, multi-asset class tick data capture, storage, streaming analytics, and research platform. No limitations on data volumes, peak rates, or length of stored history.
+
+### OneTick Cloud
+A fully managed, cloud-hosted service providing cleansed and normalized tick data and analytics. Covers 200+ global exchanges with history going back up to 30 years (some markets back to 1970). Accessible via Python API, REST API, SQL, or file download.
+
+### OneTick Surveillance
+A market surveillance and trade monitoring solution used by exchanges, tier-1 banks, routing/executing brokers, clearing firms, FCMs, market makers, and buy-side firms. Selected by the UK Financial Conduct Authority (FCA) as its primary market surveillance and visualization system. Winner of Best Trade Surveillance Solution at the TradingTech Insight Awards Europe 2026.
+
+### OneTick TCA / BestEx
+Transaction Cost Analysis and Best Execution analytics, including crypto TCA. Dashboard-based and report-based analytics for execution committee reporting, evaluating liquidity providers, and algo evaluation.
+
+### OneTick Regulatory Solutions
+Turnkey compliance solutions including MiFID II, MAR, and RTS 6. Real-time ML-based detection of abnormal algo/trader/market behavior and robust case management.
+
+## Key Capabilities
+
+- Tick Data Capture and Storage: Collects, compresses, and archives every tick across all asset classes. Schema-tolerant time-series database requiring no re-normalization on format changes.
+- Streaming Analytics Engine: Fully integrated real-time event processing with configurable alert management dashboards.
+- Event Processors: Hundreds of built-in analytical functions for quantitative research.
+- Machine Learning: Native ML event processors for classification, regression, and clustering. Train, predict, and evaluate in-platform without data export.
+- SQL Analytics: Query historical tick data and analytics via SQL against OneTick Cloud datasets.
+- Python Integration: onetick.py library with pandas-like API; supports Matplotlib, NumPy, Pandas, and Jupyter notebooks.
+- Open Data Formats: Apache Parquet as native archive format; Apache Iceberg support available for OneTick Cloud.
+- AI Integration: LLM-powered natural language query interface; MCP (Model Context Protocol) support; RAG-based engineering assistance.
+- Cloud Integrations: AWS, GCP, and Azure support; integrates with Hadoop and Apache Spark.
+
+## Recent Blog Posts
+
+- Escaping the Data Build Trap: Cloud Strategies for Accelerating Quantitative Research (Apr 2026): https://blog.onetick.com/escaping-the-data-build-trap-with-cloud-strategies-for-accelerating-quantitative-research
+- Navigating Changes in Market Data: Odd Lots, Reductions in Minimum Tick Sizes, and The Global Push Toward Continuous Markets (Apr 2026): https://blog.onetick.com/navigating-changes-in-market-data-odd-lots-reductions-in-minimum-tick-sizes-and-the-global-push-toward-continuous-markets
+- OneTick and KX: Key Differentiators (Mar 2026): https://blog.onetick.com/onetick-kx-key-differentiators
+- OneTick and KX: Together in Action (Mar 2026): https://blog.onetick.com/onetick-kx-together-in-action
+- OneTick Wins Best Trade Surveillance Solution (Mar 2026): https://blog.onetick.com/the-safest-bet-on-wall-street-onetick-wins-best-trade-surveillance-solution
+- OneTick Open-Source Interoperability (Feb 2026): https://blog.onetick.com/onetick-open-source-interoperability
+- Leveraging AI for Natural Language Assistance in Trading Analytics (Dec 2025): https://blog.onetick.com
+- OneTick Platform Update with Parquet and AI Coding Assistant (Jan 2026): https://blog.onetick.com
+- Building a Data Strategy with Iceberg, Parquet, and RAG Engineering (Oct 2025): https://blog.onetick.com
+
+## Recent Webinars
+
+- Navigating the Build vs. Buy Dilemma: Accelerating Time to Value - Speaker: Mick Hittesdorf, OneTick Senior Cloud Architect. Examines cloud-delivered managed market data platforms and the build-vs-buy decision for quantitative research infrastructure.
+- OneTick Platform Update 1.26 - Speakers: Peter Simpson (Product Owner), Mick Hittesdorf (Senior Cloud Architect). Covers speed and scale, open access, analytics and visualization, and platform stability.
+- The Quant's AI Advantage: Leveraging AI for Natural Language Assistance in Trading Analytics - Speakers: Peter Simpson (Product Owner), Alexander Serechenko (LLM Team Lead). Demonstrates AI-powered natural language queries, MCP integration, and IDE-based workflows for quants.
+- Webinar archive and registration: https://www.onetick.com/learn-more/webinars
+
+## Key URLs
+
+- Homepage: https://www.onetick.com
+- KX (parent company): https://kx.com
+- Merger announcement: https://www.onetick.com/kx-and-onetick-merge-to-unite-capital-markets-data-analytics-ai-and-surveillance-on-one-platform
+- Product Overview: https://www.onetick.com/onetick-tick-analytics-platform
+- OneTick Cloud: https://www.onetick.com/market-data
+- Use Cases: https://www.onetick.com/use-cases
+- Surveillance: https://www.onetick.com/mifid-ii-and-mar-surveillance
+- Professional Services: https://www.onetick.com/professional-services
+- Webinars: https://www.onetick.com/learn-more/webinars
+- Blog: https://blog.onetick.com
+- Academy: https://academy.onetick.com
+- Company Updates: https://www.onetick.com/onetickupdates-2024
+- Careers: https://www.onetick.com/careers
+- Full LLM context: https://www.onetick.com/llms-full.txt

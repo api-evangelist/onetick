@@ -1,0 +1,75 @@
+generated: '2026-07-22'
+method: searched
+source: https://cloud-auth.parent.onetick.com/realms/OMD/.well-known/openid-configuration
+notes: OneTick publishes no public scopes reference page; this list is the
+  scopes_supported advertised by the Keycloak OMD realm OIDC discovery document
+  that issues OneTick Cloud WebAPI tokens. Standard OIDC scopes are described per
+  the OpenID Connect specification; realm-specific scopes (OMDKeyScope, truetick,
+  per-customer ccf_*_aud audience scopes) are listed verbatim without invented
+  descriptions.
+schemes:
+- name: OneTickCloudOAuth2
+  source: well-known/onetick-openid-configuration.json
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://cloud-auth.parent.onetick.com/realms/OMD/protocol/openid-connect/token
+  - flow: authorizationCode
+    authorizationUrl: https://cloud-auth.parent.onetick.com/realms/OMD/protocol/openid-connect/auth
+    tokenUrl: https://cloud-auth.parent.onetick.com/realms/OMD/protocol/openid-connect/token
+scopes:
+- scope: openid
+  description: OpenID Connect authentication (standard OIDC scope)
+- scope: profile
+  description: Access to profile claims (standard OIDC scope)
+- scope: email
+  description: Access to email claims (standard OIDC scope)
+- scope: address
+  description: Access to address claims (standard OIDC scope)
+- scope: phone
+  description: Access to phone claims (standard OIDC scope)
+- scope: offline_access
+  description: Request a refresh token for offline access (standard OAuth2/OIDC scope)
+- scope: roles
+  description: Keycloak realm/client role claims
+- scope: acr
+  description: Keycloak authentication context class reference claim
+- scope: basic
+  description: Keycloak basic claim set
+- scope: web-origins
+  description: Keycloak allowed web origins
+- scope: microprofile-jwt
+  description: MicroProfile JWT claim mapping (Keycloak built-in)
+- scope: service_account
+  description: Keycloak service-account (client-credentials) scope
+- scope: OMDKeyScope
+  description: null
+- scope: truetick
+  description: null
+- scope: client_group
+  description: null
+- scope: aws-integration
+  description: null
+- scope: acf_test_app_1_aud
+  description: null
+- scope: ccf_test_app_1_aud
+  description: null
+- scope: ccf_test_app_2_aud
+  description: null
+- scope: ccf_test_app_3_aud
+  description: null
+- scope: ccf_test_app_4_aud
+  description: null
+- scope: ccf_test_app_5_aud
+  description: null
+- scope: ccf_axos_app_1_aud
+  description: null
+- scope: ccf_alphadyne_app_1_aud
+  description: null
+- scope: ccf_sigma_logic_inc_app_1_aud
+  description: null
+- scope: ccf_omd_monitor_app_1_aud
+  description: null
+- scope: ccf_omd_ps_app_1_aud
+  description: null
+- scope: ccf_omd_mngd_svc_app_1_aud
+  description: null

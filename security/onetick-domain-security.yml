@@ -1,0 +1,29 @@
+generated: '2026-07-22'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.onetick.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep  4 20:15:34 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: authdash.cloud.onetick.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Jan 31 23:59:59 2027 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: rest.cloud.onetick.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Jan 31 23:59:59 2027 GMT
+  hsts: true
+  hsts_max_age: 31536000
+domains:
+- domain: onetick.com
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject

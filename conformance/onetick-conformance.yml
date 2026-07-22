@@ -1,0 +1,48 @@
+generated: '2026-07-22'
+method: searched
+source: https://cloud-auth.parent.onetick.com/realms/OMD/.well-known/openid-configuration
+standards:
+- id: oauth2
+  conforms: true
+  evidence: OneTick Cloud WebAPI is secured with OAuth2 Bearer tokens (client-credentials
+    grant) issued by the Keycloak OMD realm; RFC 8414-style metadata published at the
+    realm's .well-known/openid-configuration.
+- id: oidc
+  conforms: true
+  evidence: Full OpenID Connect discovery document published for issuer
+    https://cloud-auth.parent.onetick.com/realms/OMD (authorization, token, userinfo,
+    jwks, end-session endpoints; id_token signing algs).
+- id: oauth2-pkce
+  conforms: true
+  evidence: code_challenge_methods_supported includes S256 and plain in the OIDC
+    discovery document.
+- id: oauth2-device-flow
+  conforms: true
+  evidence: grant_types_supported includes urn:ietf:params:oauth:grant-type:device_code
+    and a device_authorization_endpoint is published.
+- id: oauth2-mtls-rfc8705
+  conforms: true
+  evidence: token_endpoint_auth_methods_supported includes tls_client_auth,
+    tls_client_certificate_bound_access_tokens is true, and mtls_endpoint_aliases
+    are published in the OIDC discovery document.
+- id: oauth2-par-rfc9126
+  conforms: true
+  evidence: pushed_authorization_request_endpoint published in the OIDC discovery
+    document (require_pushed_authorization_requests false).
+- id: apache-parquet
+  conforms: true
+  evidence: Provider states Apache Parquet is the native archive format and Apache
+    Iceberg support is available for OneTick Cloud (https://www.onetick.com/llms.txt,
+    mirrored at llms/onetick-llms.txt).
+- id: apache-arrow
+  conforms: true
+  evidence: onetick-py[webapi] REST connectivity to OneTick Cloud uses Arrow as the
+    transport format per the installation docs
+    (https://docs.pip.distribution.sol.onetick.com/static/installation/webapi.html).
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: No public evidence; the REST endpoint reference sits behind the cloud
+    dashboard login.
+- id: fapi
+  conforms: false
+  evidence: No FAPI conformance claim found.
