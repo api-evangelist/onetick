@@ -12,6 +12,18 @@ description: OneTick, from OneMarketData, is an enterprise tick database and ana
   querying, and file delivery, with a self-serve trial registration. The detailed
   REST endpoint reference sits behind the cloud dashboard login. OneMarketData merged
   with KX in September 2025 under TA Associates ownership.
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: true
+  callable_host: false
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - pricing
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: unknown
