@@ -1,0 +1,43 @@
+generated: '2026-09-11'
+method: probed
+source: https://mcp.cloud.onetick.com/mcp
+status: published
+server:
+  name: onetick
+  transport: http
+  url: https://mcp.cloud.onetick.com/mcp
+deployment:
+  mode: remote
+  endpoint: https://mcp.cloud.onetick.com/mcp
+  verified: probed
+  probe: live
+  checked: '2026-09-11'
+  source: docs-check 2026-09-12 (endpoint found in the provider's own documentation, then probed)
+tools_count: 12
+tools:
+- name: search_python-docs
+  description: ''
+- name: search_python-examples
+  description: ''
+- name: search_cloud_coverage
+  description: ''
+- name: search_sql-docs
+  description: ''
+- name: search_symbol_universe
+  description: ''
+- name: list_databases
+  description: ''
+- name: db_field_descriptions
+  description: ''
+- name: db_field_enumerations
+  description: ''
+- name: db_tables
+  description: ''
+- name: db_table_schemas
+  description: ''
+- name: calendar_holidays
+  description: ''
+- name: trading_hours
+  description: ''
+tools_source: live tools/list via initialize handshake, 2026-09-12 (signals/audit_mcp_authorship.py --probe)
+authorship: provider
