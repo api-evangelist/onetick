@@ -16,28 +16,54 @@ deployment:
 tools_count: 12
 tools:
 - name: search_python-docs
-  description: ''
+  description: This collection contains the official documentation for the onetick-py (otp) library. It
+    is the most reliable and authoritative source in the retrieval system.Each document includes a use
+    case, a clear explanation of the functionality, and
 - name: search_python-examples
-  description: ''
+  description: This collection contains practical Python examples for the onetick-py (otp) library. Each
+    document typically includes a concrete use case, a short explanation of the approach, and a corresponding
+    code snippet. This collection is intended to
 - name: search_cloud_coverage
-  description: ''
+  description: A documentation collection covering OneTick Cloud coverage and features. This includes
+    details on available datasets, cloud-specific configurations, and connectivity guides for the OneTick
+    Cloud platform. All information in this collection
 - name: search_sql-docs
-  description: ''
+  description: This collection contains the official OneTick SQL documentation. It is the main and most
+    reliable source for SQL syntax, functions, and query behavior. Use this collection as the primary
+    reference when writing or checking OneTick SQL querie
 - name: search_symbol_universe
-  description: ''
+  description: 'Knowledge source for instrument symbology: retrieve symbols and their attributes (market,
+    currency, security type, identifiers such as ISIN/MIC) from the configured OneTick query.  If no start_date
+    is provided, the previous trading day is u'
 - name: list_databases
-  description: ''
+  description: Retrieve a list of available financial market databases with optional filtering.  This
+    tool provides metadata about financial datasets including sample feeds, consolidated market data,
+    FX datasets, futures, indices, and interest rate data.
 - name: db_field_descriptions
-  description: ''
+  description: Look up market-data fields for a tick type by NAME or by MEANING.  Use this for both "what
+    does field <X> mean?" and "WHICH field holds <concept>?" — for the latter, pass ``description_query``
+    (e.g. description_query='settlement price' → SE
 - name: db_field_enumerations
-  description: ''
+  description: Retrieve enumerated values and their human-readable descriptions for specific fields.  This
+    tool provides the mapping between raw codes (values) in market data and their human-readable meanings.
+    Both database name and field name are require
 - name: db_tables
-  description: ''
+  description: 'List the tables (tick types) a database contains, or describe/find a tick type.  Modes:   *
+    db_name set        -> the tables (tick types) available in THAT database, each with its     description.
+    Use this for "what tables/tick types does <'
 - name: db_table_schemas
-  description: ''
+  description: List the actual fields/columns of a SPECIFIC database's table (db_name + tick_type).  This
+    is the right tool for "what fields/columns does <db>'s <table> have?" — e.g. "list the fields in the
+    CME DAY table" (db_name='CME', tick_type='DAY').
 - name: calendar_holidays
-  description: ''
+  description: Retrieve market holidays for a given database within an optional date range.  Use this
+    tool when the user asks about non-trading days, market closures and public holidays. Holidays include
+    both full closures (ACTIVITY_NAME = 'Full Holiday')
 - name: trading_hours
-  description: ''
+  description: Retrieve the regular trading session schedule for a given database.  Use this tool when
+    the user asks about trading hours, market open/close times, session types (pre-market, main session,
+    post-market, lunch breaks), or the timezone of a sp
 tools_source: live tools/list via initialize handshake, 2026-09-12 (signals/audit_mcp_authorship.py --probe)
 authorship: provider
+descriptions_source: live tools/list (authorship probe or saved capture); filled by backfill-tools-from-authorship.py
+  --descriptions, 2026-09-28
