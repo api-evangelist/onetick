@@ -13,16 +13,20 @@ description: OneTick, from OneMarketData, is an enterprise tick database and ana
   REST endpoint reference sits behind the cloud dashboard login. OneMarketData merged
   with KX in September 2025 under TA Associates ownership.
 deliveryModel:
-  model: unknown
+  model: saas
+  license_evidence:
+    not_product:
+    - onemarketdata/onetick-py
+    - onemarketdata/onetick-sql-docs
   open_source: unknown
   commercial: true
   callable_host: false
-  label: Delivery model not determined — needs a product licence on record
+  label: Hosted service · you call their endpoint
   confidence: low
   source:
   - pricing
-  - repository-unlicensed
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: unknown
@@ -37,16 +41,16 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/onetick.png
 tags:
-- Financial
+- Finance
 - Market Data
 - Tick Data
 - Historical Data
 - Trading
 - Analytics
-- Surveillance
 - Time Series
 - Stocks
 - Options
+- Trade Surveillance
 tags_raw:
 - Financial
 - Market Data
@@ -54,10 +58,10 @@ tags_raw:
 - Historical Data
 - Trading
 - Analytics
-- Surveillance
 - Time Series
 - Equities
 - Options
+- Trade Surveillance
 created: '2026-07-21'
 modified: '2026-07-22'
 specificationVersion: '0.23'
@@ -212,3 +216,5 @@ common:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-tags-removed:
+- Surveillance
