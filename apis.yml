@@ -63,7 +63,7 @@ tags_raw:
 - Options
 - Trade Surveillance
 created: '2026-07-21'
-modified: '2026-07-22'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: onetick:onetick-cloud-rest-api
@@ -167,6 +167,8 @@ apis:
     packaged for Python integration; marketed sales-led (request a demo) with no public
     endpoint reference.
 common:
+- url: https://blog.onetick.com/rss.xml
+  type: BlogRSS
 - type: DomainSecurity
   url: security/onetick-domain-security.yml
 - type: WellKnown
