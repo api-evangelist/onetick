@@ -1,0 +1,1160 @@
+{
+  "endpoint": "https://mcp.cloud.onetick.com/mcp",
+  "captured": "2026-10-20",
+  "method": "initialize + tools/list (anonymous, no tool called; roadmap#992)",
+  "protocol_version": "2025-06-18",
+  "server_info": {
+    "name": "kx-mcp",
+    "version": "3.4.9"
+  },
+  "result": {
+    "tools": [
+      {
+        "name": "onetick_search_python-docs",
+        "description": "Authoritative onetick-py (otp) Python API documentation: each entry pairs a use case and explanation with working Python (otp) code. Search this for otp syntax and for how to write, modify, validate, and run or execute a OneTick query in Python — including installing onetick-py (pip), WebAPI setup (OTP_WEBAPI), connecting and authenticating, and running a query with otp.run to get a dataframe (on your machine). This includes worked examples covering data retrieval, calculation, and common use cases. Primary reference — takes precedence over the additional examples collection on any conflict.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "query": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "query"
+          ],
+          "type": "object"
+        },
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "_meta": {
+          "fastmcp": {
+            "tags": []
+          }
+        }
+      },
+      {
+        "name": "onetick_search_python-examples",
+        "description": "Additional worked onetick-py (otp) examples: real query patterns and code snippets for concrete use cases, showing how otp functionality is applied in practice (common operations, tick types, and fields). Search this to find a working Python example close to the task. Reliable but secondary to the python-docs collection, which takes precedence on any conflict.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "query": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "query"
+          ],
+          "type": "object"
+        },
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "_meta": {
+          "fastmcp": {
+            "tags": []
+          }
+        }
+      },
+      {
+        "name": "onetick_search_cloud_coverage",
+        "description": "OneTick Cloud coverage and platform reference: which datasets (e.g. crypto, FX, equities), asset classes, venues and markets are available, their features (order-book depth, bars), their tables including derived datasets and feature sets, schemas, field enumerations, trading hours and recent holiday calendar. Search this when a question names a specific dataset, asset class, or coverage feature, or asks what OneTick Cloud supports. Also search this for the methodology or definitions of how fields, tables and feature sets are constructed, how continuous contracts are defined, and which symbologies are available to map. For exact trading hours, holidays, table schemas, field meanings or enumerated values of a specific database, prefer the dedicated tools (trading_hours, calendar_holidays, db_table_schemas, db_field_descriptions, db_field_enumerations). Primary reference for OneTick Cloud behavior, venue / exchange coverage, available symbologies and methodology.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "query": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "query"
+          ],
+          "type": "object"
+        },
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "_meta": {
+          "fastmcp": {
+            "tags": []
+          }
+        }
+      },
+      {
+        "name": "onetick_search_sql-docs",
+        "description": "OneTick SQL reference, worked examples, AND how to run SQL against OneTick. Covers: SQL syntax, functions, and query behavior, with example queries for common tasks — order-book / book-depth snapshots and price levels, aggregations, as-of joins, symbology, continuous contracts, and TCA; and how to access, connect to, and run or execute a SQL query — via REST, Python (the onetick-py / onetick.query_webapi API, returning a dataframe) and Arrow Flight — including installation (pip) and authentication (client_id / client_secret). Search this for any 'how do I query ... in SQL' task and follow its documented syntax, and also for 'how do I run / execute / connect a SQL query'. To find which datasets/markets exist (e.g. crypto, FX, equities), use search_cloud_coverage or list_databases. Authoritative for all OneTick SQL questions.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "query": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "query"
+          ],
+          "type": "object"
+        },
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "_meta": {
+          "fastmcp": {
+            "tags": []
+          }
+        }
+      },
+      {
+        "name": "onetick_list_continuous_contracts",
+        "description": "List the continuous (rolling) futures contracts available for a database, optionally for one product.\n\nUse when the user asks which continuous / rolling front-month contract series exist for an\nexchange or database (e.g. NYMEX) or for a specific futures product (e.g. CL). Returns each\ncontinuous-contract name together with its roll methodology (front month by open interest,\nvolume, tick-data-index, or expiry; and 2nd..12th month by expiry). If product_code is empty,\nall continuous contracts for the database are returned.\n\nThis lists rolling continuous *contract series*, not the underlying products — to list a database's\nproducts use `list_products`; for point-in-time symbol attributes use `search_symbol_universe`.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "db_name": {
+              "description": "Database name, e.g. NYMEX or CME.",
+              "type": "string"
+            },
+            "product_code": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Futures product code, e.g. CL. Empty returns all continuous contracts for the database."
+            }
+          },
+          "required": [
+            "db_name"
+          ],
+          "type": "object"
+        },
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "_meta": {
+          "fastmcp": {
+            "tags": []
+          }
+        }
+      },
+      {
+        "name": "onetick_db_load_availability",
+        "description": "Report when a database's data was most recently loaded (data freshness / availability).\nHistoric data is typically loaded once a day.\n\nUse for questions about whether a database is up to date or when it last refreshed, e.g.\n\"is US_COMP current?\", \"when did CME last load?\", \"is data available for <db>?\". Returns the\nlatest completed data-load event (the last \"Load finished\" record from the DB_INFO PROC_EVENTS\nlog over the last 30 days) for the given database, with the event time in UTC.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "db_name": {
+              "description": "Database name to check, e.g. US_COMP.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "db_name"
+          ],
+          "type": "object"
+        },
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "_meta": {
+          "fastmcp": {
+            "tags": []
+          }
+        }
+      },
+      {
+        "name": "onetick_futures_holiday_calendar",
+        "description": "List recent market holidays (closures) for a futures product.\n\nUse for questions about non-trading days / market closures for a futures product, e.g.\n\"when is <product> closed?\", \"holidays for CL\", \"half-day / limited-trading days\". Identify the\nproduct by its Bloomberg code (preferred) or its TDI code (e.g. 'CL'). The Bloomberg code is a\nstandard Bloomberg identifier — '<ticker> <yellow key>', where the yellow key is a market-sector\nclassifier, one of Comdty, Index, Curncy, Equity, Govt, Corp, Mtge, Muni, Pfd, M-Mkt (e.g. 'CL\nComdty'). Casing does not matter; it is normalized. Returns the most recent holiday activities\n(full holiday, non-trading hours, limited trading hours, night-session holiday) with time zone\nand start/end dates and times.\n\nFor the regular daily session open/close times use `futures_trading_hours` instead. For a whole\nexchange or database (by db_name, e.g. CME) rather than a futures product, use `calendar_holidays`.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "tdi_product_code": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "TDI product code, e.g. CL. Used if no Bloomberg code is given."
+            },
+            "bsym_product_code": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Bloomberg product code in '<ticker> <yellow key>' form, e.g. 'CL Comdty', 'SPX Index', 'EUR Curncy'. Preferred when provided. Case-insensitive."
+            },
+            "last_n": {
+              "default": 50,
+              "description": "Number of most-recent holiday records to return.",
+              "type": "integer"
+            }
+          },
+          "type": "object"
+        },
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "_meta": {
+          "fastmcp": {
+            "tags": []
+          }
+        }
+      },
+      {
+        "name": "onetick_futures_trading_hours",
+        "description": "List the regular trading-hours sessions (open/close times) for a futures product.\n\nUse for questions about when a futures product trades, e.g. \"trading hours for CL\",\n\"when does <product> open/close?\", \"session times\". Identify the product by its Bloomberg code\n(preferred) or its TDI code (e.g. 'CL'). The Bloomberg code is a standard Bloomberg identifier —\n'<ticker> <yellow key>', where the yellow key is one of Comdty, Index, Curncy, Equity, Govt,\nCorp, Mtge, Muni, Pfd, M-Mkt (e.g. 'CL Comdty'). Casing does not matter; it is normalized.\nReturns each currently-active session with its time zone and start/end times.\n\nFor market holidays / closures use `futures_holiday_calendar` instead. For a whole exchange or\ndatabase (by db_name, e.g. CME) rather than a futures product, use `trading_hours`.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "tdi_product_code": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "TDI product code, e.g. CL. Used if no Bloomberg code is given."
+            },
+            "bsym_product_code": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Bloomberg product code in '<ticker> <yellow key>' form, e.g. 'CL Comdty', 'SPX Index', 'EUR Curncy'. Preferred when provided. Case-insensitive."
+            }
+          },
+          "type": "object"
+        },
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "_meta": {
+          "fastmcp": {
+            "tags": []
+          }
+        }
+      },
+      {
+        "name": "onetick_list_products",
+        "description": "List the products (root futures/options products, e.g. ES, CL) for a database, or match by description.\n\nUse for questions about which products / roots an exchange or database offers, or to find a\nproduct from a description, e.g. \"what products are on CME_GLOBEX?\", \"list products for NYMEX\",\n\"find the crude oil product\", \"which product matches 'ES'?\". Returns one row per product code\nwith its Bloomberg symbol, name and contract counts by security type (future, futures spread,\noption, option spread). When description_query is empty, all products for the database are listed.\n\nThis lists underlying *products*, not the rolling continuous-contract series — for those use\n`list_continuous_contracts`.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "db_name": {
+              "description": "Database name, e.g. CME_GLOBEX.",
+              "type": "string"
+            },
+            "description_query": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Optional text to match against a product's code, Bloomberg symbol (BSYM), or name (e.g. 'ES', 'crude oil'). Empty lists all products for the database."
+            }
+          },
+          "required": [
+            "db_name"
+          ],
+          "type": "object"
+        },
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "_meta": {
+          "fastmcp": {
+            "tags": []
+          }
+        }
+      },
+      {
+        "name": "onetick_search_symbol_universe",
+        "description": "Knowledge source for symbol coverage and instrument symbology: retrieve symbols and their\n  attributes (market, currency, security type, identifiers such as ISIN/MIC) from the OneTick\n  SYMBOL_UNIVERSE data.\n  Can be used to identify the datasets that provide market data for the filter.\n  Or used to identify the instruments that are available for the selected dataset or venue.\n\n  If no start_date is provided, the previous trading day is used. The queried [start, end] span is\n  capped to MAX_QUERY_SPAN_DAYS (default 1) — SYMBOL_UNIVERSE is a point-in-time daily snapshot.\n\n  Supported filters (pass via the `filters` map):\n    - sec_type: Security type (e.g. 'Option', 'Equity', 'Futures Spread', 'Bond', 'Future', 'Option Spread', 'ETF', 'Structured Product', 'Corporate Bond', 'Unknown'). When omitted, Options are excluded automatically for performance.\n- db_symbol: Symbol name within the database (e.g. 'VOD', 'AAPL', 'CME Option Spread').\n- db_name: Database name (e.g. 'CME').\n- currency: Trading currency (e.g. 'USD', 'EUR', 'GBP').\n- mkt_segment: Market segment.\n- mic: Market Identifier Code (e.g. 'XLON', 'XNYS').\n- isin: ISIN (International Securities Identification Number).\n  ",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "start_date": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "YYYY-MM-DD start date. Defaults to the previous trading day."
+            },
+            "end_date": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "YYYY-MM-DD end date. Defaults to start_date + 1 day."
+            },
+            "filters": {
+              "anyOf": [
+                {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "type": "object"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Map of {filter_name: value} to narrow results. Supported filter names are listed in the tool description; unknown names are ignored."
+            },
+            "limit": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": 100,
+              "description": "Maximum number of results."
+            }
+          },
+          "type": "object"
+        },
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "_meta": {
+          "fastmcp": {
+            "tags": []
+          }
+        }
+      },
+      {
+        "name": "onetick_list_databases",
+        "description": "Retrieve a list of available market data divided by dataset, typically representing a\nconsolidated tape for a region or an exchange or venue, with optional filtering.\n\nThis tool provides metadata about historic and real time market data including sample datasets,\nconsolidated tapes for selected regions and countries, FX spot rates, equities, futures, spreads,\noptions, indices, and historic interest rates.\nResults can be filtered by availability, asset class coverage, geographic region,\nexchange identifiers (MIC), and data characteristics such as real-time support,\npre-calculated bars, and order book depth.\n\nTypical discovery workflow: call list_databases first to find a valid db_name,\nthen use db_tables to see available tick types (tables), db_table_schemas to inspect field\nstructure, db_field_descriptions for field semantics, and db_field_enumerations\nto decode enumerated values.\n\nChoosing the FASTEST dataset (query cost matters): a market is often offered at several\ngranularities — a raw 'Tick Data' database AND coarser SUMMARY feature set databases ('End of Day\nMetrics' for daily, '1 Minute Bars' for minute bars). For aggregate or periodic questions\n(daily/weekly/monthly totals, closes, highs), prefer the summary database (filter\ndb_type='End of Day Metrics' or '1 Minute Bars') over 'Tick Data' — it is pre-aggregated and\nfar faster/cheaper. Use 'Tick Data' only when tick-level detail is genuinely required.\n\nFiltering behavior:\n- String filters use case-insensitive prefix matching\n- MIC and COUNTRY support multiple values (comma or space separated)\n- description_query searches the database DESCRIPTION text by meaning (ranked by directness)\n  — use it for \"which database is for <concept>?\" when you don't know the name\n- Multiple filters are combined using AND logic\n\nReturns:\n    str:\n        JSON formatted string containing matching database records.\n        Returns a message if no databases match the criteria.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "public": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "Y",
+                    "N"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Filter by public availability: Y = publicly available, N = restricted/internal"
+            },
+            "db_category": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "AVAILABLE SAMPLE",
+                    "CONSOLIDATED",
+                    "INTEREST RATES",
+                    "FX",
+                    "EXCHANGE - CASH",
+                    "EXCHANGE - DERIVATIVES",
+                    "INDEX",
+                    "OQD",
+                    "REFERENCE",
+                    "CRYPTO"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Filter by database category (e.g. 'AVAILABLE SAMPLE', 'CONSOLIDATED', 'CRYPTO')."
+            },
+            "dataset": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Filter by dataset identifier — the asset group (e.g. 'CME', 'ABU_DHABI', 'US_COMP')."
+            },
+            "db_name": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Filter by specific database name (e.g. 'ABU_DHABI_BARS', 'CME_SAMPLE')."
+            },
+            "db_type": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "Tick Data",
+                    "1 Minute Bars",
+                    "End of Day Metrics",
+                    "Market Share End of Day Metrics",
+                    "Reference"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Filter by the type of data stored."
+            },
+            "exchange": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Filter by exchange name."
+            },
+            "mic": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Filter by Market Identifier Code (e.g. 'XNYS', 'XLON').Multiple values can be separated by commas."
+            },
+            "country": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Filter by 2-letter ISO country code (e.g. 'US', 'GB', 'CA').Multiple values can be separated by commas."
+            },
+            "country_name": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Filter by full country name."
+            },
+            "real_time": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "Y",
+                    "N"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Filter by real-time data availability: Y = real-time supported, N = not available"
+            },
+            "bars": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "Y",
+                    "N"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Filter by historical bar data availability: Y = available, N = not available"
+            },
+            "book_depth": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "Y",
+                    "N"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Filter by L2/Book Depth availability: Y = available, N = not available"
+            },
+            "time_zone": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Filter by time zone identifier (e.g. 'America/New_York', 'UTC')."
+            },
+            "equities": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "Y",
+                    "N"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Filter for databases containing Equities: Y = included, N = not included"
+            },
+            "futures": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "Y",
+                    "N"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Filter for databases containing Futures: Y = included, N = not included"
+            },
+            "options": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "Y",
+                    "N"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Filter for databases containing Options: Y = included, N = not included"
+            },
+            "spreads": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "Y",
+                    "N"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Filter for databases containing Spreads: Y = included, N = not included"
+            },
+            "indices": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "Y",
+                    "N"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Filter for databases containing Indices: Y = included, N = not included"
+            },
+            "fx": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "Y",
+                    "N"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Filter for databases containing Foreign Exchange: Y = included, N = not included"
+            },
+            "fixed_income": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "Y",
+                    "N"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Filter for databases containing Fixed Income: Y = included, N = not included"
+            },
+            "crypto": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "Y",
+                    "N"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Filter for databases containing Crypto: Y = included, N = not included"
+            },
+            "description_query": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Find databases BY DESCRIPTION/meaning when you don't know the name — e.g. description_query='crypto derivatives'. Matches the database description text and ranks the most direct match first. Combine with the structured filters above."
+            },
+            "limit": {
+              "default": 10,
+              "description": "Maximum number of records to return. Default is 10; values are capped at 50. To see different records, narrow the result with filters rather than raising this.",
+              "type": "integer"
+            }
+          },
+          "type": "object"
+        },
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "_meta": {
+          "fastmcp": {
+            "tags": []
+          }
+        }
+      },
+      {
+        "name": "onetick_db_field_descriptions",
+        "description": "Look up market-data fields by NAME or by MEANING.\n\nUse this for both \"what does field <X> mean?\" and \"WHICH field holds <concept>?\" — for the\nlatter, pass ``description_query`` (e.g. description_query='settlement price' → SETTLE_PRICE).\nIt gives generic, db-agnostic field meanings and is NOT database-scoped; to list the actual\nschema or columns of a SPECIFIC database's table (e.g. \"the fields in the CME DAY table\"), use\n`db_table_schemas` instead.\n\nThis tool provides a reference catalog of market data fields mapped to tick types (tables)\nin historic market data databases. Each tick type (database table) defines a context in which\nfields are interpreted.\n\nProvide at least one of ``tick_type``, ``field``, or ``description_query``.\n\nFiltering behavior:\n- TICK_TYPE: exact match; optional (omit to search all tick types; tick types and tables are equivalent)\n- FIELD: field-name prefix match; use when you know the name\n- DESCRIPTION_QUERY: concept/meaning search over the DESCRIPTION text, ranked by directness\n  (exact description, then starts-with, then phrase, then all-keywords) — this is what makes\n  \"which field holds X\" land on the real field rather than a similarly-named one\n- Filters are case-insensitive and combined using AND logic\n\nReturns:\n    str:\n        JSON formatted list of matching field definitions containing:\n        - FIELD (field name)\n        - TICK_TYPE (associated tick type)\n        - DESCRIPTION (field definition)\n\n        Returns a message if no matching fields are found.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "tick_type": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "A tick type is the category of data stored for a symbol and represents a database table (e.g. 'TRD' for trades, 'QTE' for quotes, 'DAY' for daily stats). Optional — omit it to search across all tick types (e.g. when using description_query)."
+            },
+            "field": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Market data field NAME to search for by prefix (e.g., 'ASK', 'BID', '52_WEEK'). Use when you already know the field's name. Case-insensitive."
+            },
+            "description_query": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Find a field BY MEANING when you do NOT know its name — e.g. description_query='settlement price' returns SETTLE_PRICE. Matches against the field DESCRIPTION text and ranks the most direct match first, so the primary field ranks above a near-name companion (e.g. SETTLE_PRICE before SETTLE_PRICE_TYPE)."
+            },
+            "limit": {
+              "default": 10,
+              "description": "Maximum number of records to return. Default is 10; values are capped at 50. To see different records, narrow the result with filters rather than raising this.",
+              "type": "integer"
+            }
+          },
+          "type": "object"
+        },
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "_meta": {
+          "fastmcp": {
+            "tags": []
+          }
+        }
+      },
+      {
+        "name": "onetick_db_field_enumerations",
+        "description": "Retrieve enumerated values and their human-readable descriptions for specific fields,\ntypically associated with Trade (TRD) or Market Phase (MKT) fields.\n\nThis tool provides the mapping between raw codes (values) in stored market data\nand their human-readable meanings. Both database name and field name are\nrequired, as different databases (venues or exchanges) can have different enumerations\nfor the same field. Users can optionally filter by a specific value/code.\n\nFiltering behavior:\n- DB, FIELD, and VALUE support prefix matching\n- Filters are case-insensitive\n- Multiple filters are combined using AND logic\n\nReturns:\n    str:\n        JSON-formatted list of matching values containing:\n        - DB (database name)\n        - FIELD (field name)\n        - VALUE (raw code or value)\n        - DESCRIPTION (human-readable meaning)\n\n        Returns a message if no matching values are found.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "db": {
+              "description": "Database name (e.g., 'ALPHA', 'ABU_DHABI').",
+              "type": "string"
+            },
+            "field": {
+              "description": "Field name (e.g., 'TRADE_TYPE', 'MKT_PHASE').",
+              "type": "string"
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Filter by the specific value/code (e.g., '1', 'C', 'AS')."
+            },
+            "limit": {
+              "default": 10,
+              "description": "Maximum number of records to return. Default is 10; values are capped at 50. To see different records, narrow the result with filters rather than raising this.",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "db",
+            "field"
+          ],
+          "type": "object"
+        },
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "_meta": {
+          "fastmcp": {
+            "tags": []
+          }
+        }
+      },
+      {
+        "name": "onetick_db_tables",
+        "description": "List the tables (tick types) a database contains, or describe/find a tick type.\nTick types and tables are equivalent.\n\nModes:\n  * db_name set        -> the tables (tick types) available in THAT database, each with its\n    description. Use this for \"what tables/tick types does <db> have?\" (e.g. CME_GLOBEX).\n  * tick_type only     -> the human-readable meaning of that tick type (glossary lookup).\n  * description_query  -> find the tick type BY MEANING when you don't know its name\n    (\"which tick type holds <concept>?\"); ranked by how directly the description matches.\n    Can be combined with db_name to search within one database's tables.\n\nExample tick types: TRD (trades), BBO (best bid/offer), DAY (daily stats), PRL_FULL (full book).\n\nChoosing the FASTEST table (query cost matters):\n  The same market is stored at several granularities. SUMMARY / feature set / pre-aggregated\n  tables (e.g. DAY = daily statistics, TRD_1M and QTE_1M = minute-bar tables) are far faster\n  and cheaper to query than RAW tick tables (e.g. TRD = every trade, QTE = every quote). Prefer the COARSEST\n  table that still answers the question:\n    - For daily or periodic aggregates (\"daily volume\", \"last year's closing prices\",\n      \"monthly high\"), read the DAY (or a bar) table directly — do NOT aggregate TRD/QTE.\n    - Use raw tick tables (TRD, QTE, PRL_FULL, ...) ONLY when tick-level detail is genuinely\n      required, or when the needed value is not available pre-summarized and must be derived\n      from ticks.\n  The description signals which is which: \"Daily ... statistics\" / \"Daily Prices\" = summary;\n  \"Trades\" / \"quotes\" = raw ticks. (See also list_databases: daily/bar databases hold the\n  summary tables; the Tick Data database holds the raw ones.)\n\nReturns:\n    str: JSON list of {TICK_TYPE_NAME, TICK_TYPE_DESCRIPTION}, or a message if nothing matches.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "tick_type": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Tick-type shorthand (e.g. 'TRD', 'BBO', 'DAY'). Prefix match. Use ALONE to look up what a tick type means; combine with db_name to filter that database's tables."
+            },
+            "db_name": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Database name (e.g. 'CME_GLOBEX', 'CME'). When set, lists the tables (tick types) that THIS specific database contains. Exact, case-insensitive match."
+            },
+            "description_query": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Find a tick type BY MEANING when you do NOT know its name — e.g. description_query='daily settlement statistics'. Matches the TICK_TYPE_DESCRIPTION text and ranks the most direct match first. Combine with db_name to search within one database's tables, or use alone to search the whole glossary."
+            },
+            "limit": {
+              "default": 10,
+              "description": "Maximum number of records to return. Default is 10; values are capped at 50. To see different records, narrow the result with filters rather than raising this.",
+              "type": "integer"
+            }
+          },
+          "type": "object"
+        },
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "_meta": {
+          "fastmcp": {
+            "tags": []
+          }
+        }
+      },
+      {
+        "name": "onetick_db_table_schemas",
+        "description": "List the actual fields/columns of a SPECIFIC database's table (db_name + tick_type).\n\nThis is the right tool for table schema retrieval, \"what fields/columns does <db>'s <table>\nhave?\" — e.g. \"list the fields in the CME DAY table\" (db_name='CME', tick_type='DAY'). It is\ndatabase-scoped, unlike\n`db_field_descriptions` (which gives generic, db-agnostic field meanings for a tick type).\n\nUse this to understand the structure of a table, including which fields are present and their types\n(string, double, int, etc.). This is especially useful for querying or validating market data feeds.\n\nTip (query cost): if you only need daily/periodic aggregates, inspect the SUMMARY table\n(e.g. tick_type='DAY') — its pre-aggregated fields (daily volume, close, high/low, ...) are\nfar cheaper to read than deriving the same values from a raw tick table (TRD/QTE). See\ndb_tables for how to tell summary tables from raw ones.\n\nUsers can filter the results by:\n    - db_name: the database to look in (required)\n    - tick_type: the category of data updates (required)\n    - field_name: optional filter to search for specific fields\n\nReturns:\n    str:\n        JSON-formatted list of matching schema definitions containing:\n        - FIELD_NAME\n        - DATA_TYPE\n        - DB_NAME\n        - TICK_TYPE\n\n        Returns a message if no matches are found.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "db_name": {
+              "description": "Name of the database to retrieve schema from (e.g., 'ABU_DHABI', 'ALPHA').",
+              "type": "string"
+            },
+            "tick_type": {
+              "description": "Tick type to retrieve fields for (e.g., 'QTE' for quotes, 'TRD' for trades, 'STAT' for static data). The tick type represents a database table (user-friendly term).",
+              "type": "string"
+            },
+            "field_name": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Optional filter to search for a specific field by name prefix (e.g., 'ISIN', 'PRICE')."
+            },
+            "limit": {
+              "default": 10,
+              "description": "Maximum number of records to return. Default is 10; values are capped at 50. To see different records, narrow the result with filters rather than raising this.",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "db_name",
+            "tick_type"
+          ],
+          "type": "object"
+        },
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "_meta": {
+          "fastmcp": {
+            "tags": []
+          }
+        }
+      },
+      {
+        "name": "onetick_calendar_holidays",
+        "description": "Retrieve market holidays for a given database within an optional date range.\n\nUse this tool when the user asks about non-trading days, market closures and public holidays.\nHolidays include both full closures (ACTIVITY_NAME = 'Full Holiday') and\nsessions with reduced trading hours (ACTIVITY_NAME = 'Limited Trading Hours').\n\nFiltering behavior:\n- DB_NAME is required; use list_databases to discover valid values\n- START_DATE and END_DATE are optional. If omitted, all known holidays for the database are returned\n- Date filtering is inclusive: START_DATE >= start_date and END_DATE <= end_date\n- DB_NAME filter is case-insensitive\n\nThis is exchange / database level (by db_name). For a specific futures product (e.g. CL by\nBloomberg or TDI code) use `futures_holiday_calendar`.\n\nReturns:\n    str: JSON array of holiday records, each containing:\n        - DB_NAME: exchange or market identifier\n        - ACTIVITY_NAME: type of holiday (e.g., 'Full Holiday', 'Limited Trading Hours')\n        - TIME_ZONE: timezone of the exchange (e.g., 'Asia/Dubai')\n        - START_TIME: start of the affected trading window (HH:MM)\n        - END_TIME: end of the affected trading window (HH:MM); '24:00' means full-day closure\n        - START_DATE: holiday start date (YYYY-MM-DD)\n        - END_DATE: holiday end date (YYYY-MM-DD)\n\n        Returns a plain-text message if no holidays are found for the given filters.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "db_name": {
+              "description": "Database name to look up market holidays for (e.g., 'ABU_DHABI', 'ALPHA', 'BSE').",
+              "type": "string"
+            },
+            "start_date": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Start of the date range to filter holidays, in YYYY-MM-DD format (e.g., '2026-01-01'). Only holidays with START_DATE on or after this date are returned. If omitted, no lower bound is applied."
+            },
+            "end_date": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "End of the date range to filter holidays, in YYYY-MM-DD format (e.g., '2026-12-31'). Only holidays with END_DATE on or before this date are returned. If omitted, no upper bound is applied."
+            }
+          },
+          "required": [
+            "db_name"
+          ],
+          "type": "object"
+        },
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "_meta": {
+          "fastmcp": {
+            "tags": []
+          }
+        }
+      },
+      {
+        "name": "onetick_trading_hours",
+        "description": "Retrieve the regular trading session schedule for a given database or dataset.\nDatasets typically represent the exchange, venue or consolidated tape for a country.\n\nUse this tool when the user asks about trading hours, market open/close times,\nsession types (pre-market, main session, post-market, lunch breaks),\nor the timezone of a specific database.\n\nFiltering behavior:\n- DB_NAME is required\n- DB_NAME filter is case-insensitive\n\nThis is exchange / database level (by db_name). For a specific futures product (e.g. CL by\nBloomberg or TDI code) use `futures_trading_hours`.\n\nReturns:\n    str: JSON array of trading session records, each containing:\n        - DB_NAME: exchange or market identifier\n        - SESSION: session type (e.g., 'PRE_MARKET', 'MARKET', 'POST_MARKET', 'X_LUNCH_BREAK')\n        - TIME_ZONE: timezone of the exchange (e.g., 'America/New_York', 'Asia/Dubai')\n        - START_TIME: session open time in HH:MM format (local exchange time)\n        - END_TIME: session close time in HH:MM format (local exchange time)\n\n        Returns a plain-text message if no trading hours are found for the given database.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "db_name": {
+              "description": "Database name to look up trading sessions for (e.g., 'ABU_DHABI', 'ALPHA', 'CME').",
+              "type": "string"
+            }
+          },
+          "required": [
+            "db_name"
+          ],
+          "type": "object"
+        },
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "_meta": {
+          "fastmcp": {
+            "tags": []
+          }
+        }
+      }
+    ]
+  }
+}
